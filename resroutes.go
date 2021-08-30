@@ -15,7 +15,6 @@ func HandleGetResturant(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"res": restaurants})
-	return
 }
 
 func HandleCreateResturant(c *gin.Context) {
@@ -43,7 +42,6 @@ func HandleGetIdResturant(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"rest": arest})
-	return
 }
 
 func HandleUpdateResturant(c *gin.Context) {
@@ -58,7 +56,6 @@ func HandleUpdateResturant(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"rest": updatedrest})
-	return
 }
 
 func handleDeleteResturantbyId(c *gin.Context) {

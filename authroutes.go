@@ -11,6 +11,7 @@ import (
 )
 
 func handleRegister(c *gin.Context) {
+	c.Header("Content-Type", "application/json")
 	var u user
 	err := c.ShouldBindJSON(&u)
 	if err != nil {
@@ -39,12 +40,8 @@ func handleLogin(c *gin.Context) {
 
 	if err != nil {
 		log.Printf("_%v", err.Error())
-		c.String(http.StatusBadRequest, err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
 	}
-	cookie, err := c.Cookie("jwt")
-	if err != nil {
-		cookie = "Not_Set"
-		c.SetCookie("jwt", token, 3600, "/", "localhost", false, true)
-	}
-	log.Println(cookie)
+	c.JSON(http.StatusOK, gin.H{"token": token})
 }
